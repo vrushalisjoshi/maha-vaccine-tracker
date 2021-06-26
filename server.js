@@ -3,7 +3,8 @@ const fetch = require("node-fetch");
 const cron = require("node-cron");
 const Telegraf = require("telegraf").Telegraf;
 const nextDate = require("./utils/GetNextDate");
-require("dotenv").config();
+require("dotenv").config({ path: path.join(__dirname, ".env") });
+
 console.log(process.env.FETCH_CRON_SEC);
 const app = express();
 
