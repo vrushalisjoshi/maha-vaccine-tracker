@@ -22,6 +22,7 @@ let objHeaders = {
 };
 
 let sessionUrl = `${process.env.COWIN_URL}appointment/sessions/public/calendarByDistrict?district_id=`;
+console.log(sessionUrl);
 let statesUrl = `${process.env.COWIN_URL}admin/location/districts/${process.env.MH_ID}`;
 
 app.listen(PORT, () => {
