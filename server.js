@@ -3,8 +3,8 @@ const fetch = require("node-fetch");
 const cron = require("node-cron");
 const Telegraf = require("telegraf").Telegraf;
 const nextDate = require("./utils/GetNextDate");
-require("dotenv").config({ path: __dirname + "/.env" });
-
+require("dotenv").config();
+console.log(process.env.FETCH_CRON_SEC);
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -22,14 +22,13 @@ let objHeaders = {
 };
 
 let sessionUrl = `${process.env.COWIN_URL}appointment/sessions/public/calendarByDistrict?district_id=`;
-console.log(sessionUrl);
 let statesUrl = `${process.env.COWIN_URL}admin/location/districts/${process.env.MH_ID}`;
 
 app.listen(PORT, () => {
   console.log(`server started on PORT ${PORT}`);
 });
 
-cron.schedule(`*/30 * * * * *`, () => {
+cron.schedule(`*/${process.env.FETCH_CRON_SEC} * * * * *`, () => {
   console.log(`Cron running every ${process.env.FETCH_CRON_SEC} seconds! : ${new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" })}`);
   getVaccinationUpdates();
 });
