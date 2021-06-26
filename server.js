@@ -28,7 +28,7 @@ app.listen(PORT, () => {
   console.log(`server started on PORT ${PORT}`);
 });
 
-cron.schedule(`*/${process.env.FETCH_CRON_SEC} * * * * *`, () => {
+cron.schedule(`*/30 * * * * *`, () => {
   console.log(`Cron running every ${process.env.FETCH_CRON_SEC} seconds! : ${new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" })}`);
   getVaccinationUpdates();
 });
